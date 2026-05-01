@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Radamés Medeiros — Líder de Tecnologia. PhD em Ciências (UNIFESP). Conduzo produtos digitais da concepção à produção, com squad Tech direto e stakeholders cross-funcionais." />
+  <meta name="author" content="Radamés Medeiros" />
+  <meta property="og:title" content="Radamés Medeiros · Líder de Tecnologia" />
+  <meta property="og:description" content="Conduzo produtos digitais da concepção à produção. PhD em Ciências (UNIFESP), 9 anos como professor universitário, Líder de Tecnologia na Personal Global." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://radamesds.github.io" />
+  <meta name="theme-color" content="#0a0f1e" />
+  <title>Radamés Medeiros · Líder de Tecnologia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ──────────────────────── TOKENS ──────────────────────── */
+    :root {
+      --g:        #22c55e;
+      --g2:       #16a34a;
+      --v:        #a78bfa;
+      --v2:       #8b5cf6;
+      --radius:   14px;
+      --rsm:      8px;
+      --rlg:      18px;
+      --dur:      0.25s;
+      --font:     'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      --display:  'Space Grotesk', 'Inter', system-ui, sans-serif;
+      --max:      1020px;
+    }
+    [data-theme="dark"] {
+      --bg:           #08090f;
+      --bg-grad:      radial-gradient(ellipse 80% 60% at 50% -10%, rgba(34,197,94,0.06) 0%, transparent 60%),
+                      radial-gradient(ellipse 60% 50% at 90% 40%, rgba(167,139,250,0.04) 0%, transparent 60%);
+      --card:         #0f1424;
+      --card2:        #131a2e;
+      --border:       #1c2438;
+      --border-soft:  #161d2e;
+      --text:         #f1f5f9;
+      --text-bold:    #ffffff;
+      --muted:        #94a3b8;
+      --subtle:       #64748b;
+      --nav-bg:       rgba(8,9,15,0.82);
+    }
+    [data-theme="light"] {
+      --bg:           #eef2f7;
+      --bg-grad:      radial-gradient(ellipse 80% 60% at 50% -10%, rgba(34,197,94,0.10) 0%, transparent 60%),
+                      radial-gradient(ellipse 60% 50% at 90% 40%, rgba(167,139,250,0.08) 0%, transparent 60%);
+      --card:         #ffffff;
+      --card2:        #f1f5f9;
+      --border:       #d8dfea;
+      --border-soft:  #c8d2e0;
+      --text:         #1e293b;
+      --text-bold:    #0a0f1e;
+      --muted:        #475569;
+      --subtle:       #64748b;
+      --nav-bg:       rgba(238,242,247,0.82);
+    }
+
+    /* Light-mode shadows give cards real hierarchy on the light bg */
+    [data-theme="light"] .card,
+    [data-theme="light"] .kpi,
+    [data-theme="light"] .lead-card,
+    [data-theme="light"] .n8n-card,
+    [data-theme="light"] .stack-col,
+    [data-theme="light"] .pillar,
+    [data-theme="light"] .cta-box {
+      box-shadow: 0 1px 2px rgba(15,23,42,0.04), 0 2px 6px rgba(15,23,42,0.04);
+    }
+    [data-theme="light"] .card:hover,
+    [data-theme="light"] .kpi:hover,
+    [data-theme="light"] .n8n-card:hover,
+    [data-theme="light"] .pillar:hover {
+      box-shadow: 0 4px 16px rgba(15,23,42,0.08), 0 2px 4px rgba(15,23,42,0.04);
+    }
+    [data-theme="light"] .card-impact { background: rgba(34,197,94,0.10); }
+    [data-theme="light"] .tag,
+    [data-theme="light"] .cta-tag { background: rgba(34,197,94,0.10); border-color: rgba(34,197,94,0.32); }
+    [data-theme="light"] nav { box-shadow: 0 1px 0 rgba(15,23,42,0.03); }
+    [data-theme="light"] .btn-primary { color: #ffffff; }
+    [data-theme="light"] .btn-primary:hover { color: #ffffff; }
+    [data-theme="light"] #backTop { color: #ffffff; box-shadow: 0 6px 22px rgba(34,197,94,0.32); }
+
+    /* Dark-mode visual depth — luminance on hover, subtle inner highlight */
+    [data-theme="dark"] .card,
+    [data-theme="dark"] .kpi,
+    [data-theme="dark"] .lead-card,
+    [data-theme="dark"] .n8n-card,
+    [data-theme="dark"] .stack-col,
+    [data-theme="dark"] .cta-box {
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+    }
+    [data-theme="dark"] .card:hover,
+    [data-theme="dark"] .kpi:hover,
+    [data-theme="dark"] .n8n-card:hover {
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04),
+                  0 16px 40px rgba(34,197,94,0.06);
+    }
+    [data-theme="dark"] .pillar { box-shadow: inset 0 1px 0 rgba(255,255,255,0.03); }
+    [data-theme="dark"] .btn-primary { box-shadow: 0 8px 26px rgba(34,197,94,0.22); }
+    [data-theme="dark"] .btn-primary:hover { box-shadow: 0 10px 30px rgba(34,197,94,0.30); }
+
+    /* ─────────────────────── RESET ────────────────────────── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg);
+      transition: background-color var(--dur);
+    }
+    html[data-theme="dark"]  { color-scheme: dark; }
+    html[data-theme="light"] { color-scheme: light; }
+    body {
+      min-height: 100vh;
+      background-color: var(--bg);
+      background-image: var(--bg-grad);
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      color: var(--text);
+      font-family: var(--font);
+      font-feature-settings: "ss01", "cv11";
+      line-height: 1.6;
+      transition: background-color var(--dur), color var(--dur);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      position: relative;
+    }
+    /* Subtle dot-grid backdrop for visual depth */
+    body::before {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: -1;
+      background-image: radial-gradient(circle, var(--border) 1px, transparent 1px);
+      background-size: 30px 30px;
+      mask-image: radial-gradient(ellipse 75% 55% at 50% 30%, black 25%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse 75% 55% at 50% 30%, black 25%, transparent 80%);
+      opacity: 0.55;
+    }
+    [data-theme="light"] body::before { opacity: 0.85; }
+
+    /* Scroll progress bar */
+    #scrollProgress {
+      position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 200;
+      background: linear-gradient(90deg, var(--g), var(--v));
+      transform-origin: 0 0; transform: scaleX(0);
+      transition: transform 0.05s linear;
+      pointer-events: none;
+    }
+
+    a    { color: var(--g); text-decoration: none; transition: color var(--dur); }
+    a:hover { text-decoration: underline; }
+    h1,h2,h3,h4 { font-family: var(--display); font-weight: 700; letter-spacing: -0.02em; color: var(--text-bold); }
+
+    /* ────────────────────── REVEAL ────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ────────────────────────── NAV ───────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--border);
+      padding: 0 28px;
+      display: flex; justify-content: space-between; align-items: center;
+      height: 64px;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      transition: background var(--dur), border-color var(--dur);
+    }
+    .nav-logo { font-family: var(--display); font-weight: 700; font-size: 1.02rem; color: var(--text-bold); letter-spacing: -0.025em; }
+    .nav-logo span { color: var(--g); }
+    .nav-right { display: flex; gap: 6px; align-items: center; }
+    .nav-link {
+      font-size: 0.84rem; color: var(--muted); padding: 7px 13px;
+      border-radius: var(--rsm); transition: color var(--dur), background var(--dur);
+    }
+    .nav-link:hover { color: var(--text-bold); background: var(--card); text-decoration: none; }
+    .nav-link.active {
+      color: var(--g); background: rgba(34,197,94,0.1);
+      box-shadow: inset 0 0 0 1px rgba(34,197,94,0.22);
+    }
+    .theme-btn {
+      background: var(--card); border: 1px solid var(--border); color: var(--muted);
+      width: 38px; height: 38px; padding: 0;
+      border-radius: var(--rsm); cursor: pointer;
+      display: inline-flex; align-items: center; justify-content: center;
+      transition: border-color var(--dur), color var(--dur), background var(--dur), box-shadow var(--dur);
+    }
+    .theme-btn:hover { border-color: var(--g); color: var(--g); }
+    .theme-icon { transition: transform 0.4s ease; }
+    .theme-btn:hover .theme-icon { transform: rotate(20deg) scale(1.06); }
+    [data-theme="dark"]  .theme-moon { display: none; }
+    [data-theme="light"] .theme-sun  { display: none; }
+
+    /* ─────────────────────── SIDEBAR ──────────────────────── */
+    #sidebar {
+      position: fixed; top: 0; left: 0;
+      width: 54px; height: 100vh; z-index: 50;
+      background: var(--card);
+      border-right: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      overflow-y: auto;
+      scrollbar-width: none;
+      padding-top: 14px;
+      transition: background var(--dur), border-color var(--dur);
+    }
+    #sidebar::-webkit-scrollbar { display: none; }
+    .sidebar-link {
+      flex-shrink: 0;
+      writing-mode: vertical-lr;
+      width: 100%; height: 104px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.04em;
+      color: var(--muted); opacity: 0.55;
+      border-right: 2px solid transparent;
+      transition: opacity var(--dur), background var(--dur), color var(--dur), border-color var(--dur);
+      text-decoration: none;
+    }
+    .sidebar-link:hover {
+      opacity: 1; background: var(--card2);
+      color: var(--text-bold);
+      text-decoration: none;
+    }
+    .sidebar-link.active {
+      opacity: 1; background: var(--card2);
+      border-right-color: var(--g);
+      color: var(--text-bold);
+    }
+    .main-wrap { margin-left: 54px; }
+    @media (max-width: 820px) {
+      #sidebar { display: none; }
+      .main-wrap { margin-left: 0; }
+    }
+
+    /* ─────────────────────── HERO ─────────────────────────── */
+    .hero { max-width: var(--max); margin: 0 auto; padding: 96px 28px 56px; position: relative; }
+    .hero-grid {
+      display: grid; grid-template-columns: 1fr 240px;
+      gap: 56px; align-items: center;
+    }
+    .hero-content { min-width: 0; }
+
+    /* Profile photo with gradient ring + slow rotating aura */
+    .hero-photo {
+      position: relative; width: 220px; height: 220px; margin: 0 auto;
+    }
+    .hero-photo::before {
+      content: ''; position: absolute; inset: -24px;
+      border-radius: 50%;
+      background: conic-gradient(from 220deg, var(--g) 0%, var(--v) 50%, var(--g) 100%);
+      opacity: 0.22; filter: blur(30px); z-index: -1;
+      animation: photo-aura 16s linear infinite;
+    }
+    @keyframes photo-aura { to { transform: rotate(360deg); } }
+    .hero-photo-frame {
+      width: 100%; height: 100%; border-radius: 50%;
+      padding: 3px; position: relative;
+      background: linear-gradient(135deg, var(--g) 0%, var(--v) 100%);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.25);
+    }
+    .hero-photo-frame img {
+      width: 100%; height: 100%; border-radius: 50%;
+      object-fit: cover; display: block; background: var(--card);
+    }
+    [data-theme="light"] .hero-photo::before { opacity: 0.30; }
+    [data-theme="light"] .hero-photo-frame  { box-shadow: 0 14px 34px rgba(15,23,42,0.14); }
+
+    .tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(34,197,94,0.08); color: var(--g);
+      border: 1px solid rgba(34,197,94,0.25); border-radius: 999px;
+      font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase;
+      font-weight: 600; padding: 6px 14px; margin-bottom: 26px;
+    }
+    .tag-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--g); animation: pulse-dot 2s infinite;
+      box-shadow: 0 0 0 3px rgba(34,197,94,0.18);
+    }
+    @keyframes pulse-dot {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.5; transform: scale(0.7); }
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 5.4vw, 3.8rem);
+      line-height: 1.05; letter-spacing: -0.04em;
+      margin-bottom: 22px; font-weight: 700;
+      color: var(--text-bold);
+      -webkit-text-fill-color: var(--text-bold);
+    }
+    .hero h1 .name-first {
+      display: inline-block; margin-right: 0.22em;
+      color: var(--text-bold);
+      -webkit-text-fill-color: var(--text-bold);
+    }
+    [data-theme="dark"] .hero h1 .name-first {
+      text-shadow: 0 0 40px rgba(255,255,255,0.06);
+    }
+    .hero h1 .name-last {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--g) 0%, var(--v) 100%);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    [data-theme="dark"] .hero h1 .name-last {
+      filter: drop-shadow(0 0 26px rgba(34,197,94,0.20));
+    }
+    .hero-sub {
+      color: var(--muted); font-size: 1.06rem; max-width: 640px;
+      margin-bottom: 36px; line-height: 1.7;
+    }
+    .hero-sub strong {
+      color: var(--text-bold);
+      -webkit-text-fill-color: var(--text-bold);
+      font-weight: 600;
+    }
+    .hero-links { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .pillars {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+      margin-top: 44px;
+    }
+    .pillar {
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column; gap: 4px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 18px 20px;
+      transition: border-color var(--dur), transform 0.2s, background var(--dur), box-shadow var(--dur);
+    }
+    .pillar::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--g), var(--v));
+      opacity: 0; transition: opacity var(--dur);
+    }
+    .pillar:hover {
+      border-color: rgba(34,197,94,0.45); transform: translateY(-3px); text-decoration: none;
+    }
+    .pillar:hover::before { opacity: 1; }
+    [data-theme="dark"] .pillar:hover { box-shadow: 0 14px 38px rgba(34,197,94,0.07); }
+    .pillar-num {
+      font-family: var(--display); font-size: 0.72rem; color: var(--g);
+      font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .pillar-name { font-family: var(--display); font-size: 1.02rem; color: var(--text-bold); font-weight: 700; margin-bottom: 4px; }
+    .pillar-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.55; }
+
+    /* ──────────────────────── BUTTONS ─────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--card); border: 1px solid var(--border);
+      color: var(--text); padding: 10px 20px; border-radius: 10px;
+      font-size: 0.875rem; font-family: var(--font); font-weight: 500; cursor: pointer;
+      transition: border-color var(--dur), color var(--dur), transform 0.15s, background var(--dur);
+    }
+    .btn:hover { border-color: var(--g); color: var(--g); text-decoration: none; transform: translateY(-1px); }
+    .btn-primary {
+      background: var(--g); border-color: var(--g); color: #0a0f1e; font-weight: 700;
+      position: relative; overflow: hidden; isolation: isolate;
+    }
+    .btn-primary::before {
+      content: ''; position: absolute; inset: 0; z-index: -1;
+      background: var(--v); border-radius: 100%;
+      transform: translate(150%, 150%) scale(2.5);
+      transition: transform 0.7s ease;
+    }
+    .btn-primary:hover {
+      border-color: var(--v); color: #0a0f1e;
+    }
+    .btn-primary:hover::before { transform: translate(0, 0); }
+
+    /* ─────────────────────── COCKPIT ──────────────────────── */
+    .cockpit {
+      max-width: var(--max); margin: 0 auto;
+      padding: 0 28px 80px;
+    }
+    .cockpit-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+    }
+    .kpi {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 22px;
+      position: relative; overflow: hidden;
+      transition: border-color var(--dur), transform 0.2s;
+    }
+    .kpi:hover { border-color: rgba(34,197,94,0.4); transform: translateY(-2px); }
+    .kpi-head {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 14px;
+    }
+    .kpi-icon {
+      width: 30px; height: 30px; border-radius: var(--rsm);
+      background: rgba(34,197,94,0.1); color: var(--g);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.95rem;
+    }
+    .kpi-spark { width: 60px; height: 22px; color: var(--g); opacity: 0.7; }
+    .kpi.violet .kpi-icon { background: rgba(167,139,250,0.12); color: var(--v); }
+    .kpi.violet .kpi-spark { color: var(--v); }
+    .kpi-num {
+      font-family: var(--display); font-size: 2.1rem; font-weight: 700;
+      color: var(--text-bold); line-height: 1; letter-spacing: -0.03em;
+      margin-bottom: 6px;
+    }
+    .kpi-num small { font-size: 1rem; color: var(--muted); font-weight: 500; margin-left: 4px; }
+    .kpi-label { font-size: 0.82rem; color: var(--text); font-weight: 500; margin-bottom: 4px; }
+    .kpi-context { font-size: 0.74rem; color: var(--muted); line-height: 1.5; }
+
+    /* ─────────────────────── SECTIONS ─────────────────────── */
+    .section { max-width: var(--max); margin: 0 auto; padding: 0 28px 80px; }
+    .sec-head {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 36px;
+    }
+    .sec-num {
+      font-family: var(--display); font-size: 0.7rem; letter-spacing: 0.18em;
+      color: var(--g); font-weight: 700; opacity: 0.85;
+    }
+    .sec-title {
+      font-family: var(--display); font-size: 1.5rem; color: var(--text-bold);
+      font-weight: 700; letter-spacing: -0.025em;
+    }
+    .sec-line { flex: 1; height: 1px; background: var(--border); }
+    /* Alternated section header — title slides to the right, line stretches left */
+    .sec-head--alt { flex-direction: row-reverse; }
+
+    /* ─────────────────────── TIMELINE ─────────────────────── */
+    .timeline {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+      position: relative; padding: 30px 0 10px;
+    }
+    .timeline::before {
+      content: ''; position: absolute;
+      top: 60px; left: 8%; right: 8%; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--border) 10%, var(--border) 90%, transparent);
+    }
+    .tl-step {
+      position: relative; padding: 0 16px; text-align: center;
+    }
+    .tl-dot {
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--card); border: 2px solid var(--g);
+      margin: 50px auto 24px; position: relative;
+      box-shadow: 0 0 0 5px rgba(34,197,94,0.08);
+    }
+    .tl-step.violet .tl-dot { border-color: var(--v); box-shadow: 0 0 0 5px rgba(167,139,250,0.1); }
+    .tl-step.current .tl-dot {
+      background: var(--g); animation: pulse-dot 2.2s infinite;
+    }
+    .tl-phase { font-family: var(--display); font-size: 0.7rem; color: var(--g); letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; margin-bottom: 8px; }
+    .tl-step.violet .tl-phase { color: var(--v); }
+    .tl-step.current .tl-phase { color: var(--g); }
+    .tl-title { font-family: var(--display); font-size: 1.05rem; color: var(--text-bold); font-weight: 700; margin-bottom: 6px; }
+    .tl-meta  { font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
+
+    /* ──────────────────────── LEAD ────────────────────────── */
+    .lead-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .lead-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 26px;
+      transition: border-color var(--dur);
+    }
+    .lead-card:hover { border-color: rgba(34,197,94,0.4); }
+    .lead-icon {
+      width: 36px; height: 36px; border-radius: var(--rsm);
+      background: rgba(34,197,94,0.1); color: var(--g);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; margin-bottom: 14px;
+    }
+    .lead-card.violet .lead-icon { background: rgba(167,139,250,0.12); color: var(--v); }
+    .lead-title { font-family: var(--display); font-size: 1.05rem; color: var(--text-bold); font-weight: 700; margin-bottom: 14px; }
+    .lead-list { display: flex; flex-direction: column; gap: 10px; }
+    .lead-item {
+      display: flex; gap: 10px; align-items: flex-start;
+      font-size: 0.86rem; color: var(--muted); line-height: 1.55;
+    }
+    .lead-item::before {
+      content: ''; flex-shrink: 0; width: 5px; height: 5px;
+      border-radius: 50%; background: var(--g); margin-top: 8px;
+    }
+    .lead-card.violet .lead-item::before { background: var(--v); }
+    .lead-item strong { color: var(--text-bold); font-weight: 600; }
+
+    /* ─────────────────────── PRODUCTS ─────────────────────── */
+    .product-cat {
+      margin-bottom: 44px;
+    }
+    .product-cat:last-child { margin-bottom: 0; }
+    .cat-head {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 18px; padding-bottom: 14px;
+      border-bottom: 1px dashed var(--border);
+    }
+    .cat-icon {
+      width: 32px; height: 32px; border-radius: var(--rsm);
+      background: rgba(34,197,94,0.1); color: var(--g);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+    .product-cat.dir .cat-icon  { background: rgba(167,139,250,0.12); color: var(--v); }
+    .product-cat.mvp .cat-icon  { background: rgba(96,165,250,0.12);  color: #60a5fa; }
+    .cat-title { font-family: var(--display); font-size: 1.05rem; color: var(--text-bold); font-weight: 700; }
+    .cat-desc  { font-size: 0.8rem; color: var(--muted); margin-left: auto; }
+
+    .products-grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 26px;
+      transition: border-color var(--dur), transform 0.2s;
+    }
+    .card:hover { border-color: rgba(34,197,94,0.45); transform: translateY(-2px); }
+    .card-top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 14px; margin-bottom: 12px;
+    }
+    .card-top h3 { font-family: var(--display); font-size: 1.04rem; font-weight: 700; line-height: 1.3; }
+    .badges { display: flex; gap: 6px; flex-wrap: wrap; flex-shrink: 0; }
+    .badge {
+      font-size: 0.66rem; padding: 3px 10px; border-radius: 999px;
+      white-space: nowrap; font-weight: 600; letter-spacing: 0.02em;
+    }
+    .b-role { background: rgba(34,197,94,0.12);  color: #22c55e; border: 1px solid rgba(34,197,94,0.28); }
+    .b-dir  { background: rgba(167,139,250,0.12); color: #a78bfa; border: 1px solid rgba(167,139,250,0.28); }
+    .b-mvp  { background: rgba(96,165,250,0.12); color: #60a5fa; border: 1px solid rgba(96,165,250,0.28); }
+    .b-ai   { background: rgba(251,191,36,0.12); color: #fbbf24; border: 1px solid rgba(251,191,36,0.28); }
+    .b-fin  { background: rgba(251,146,60,0.12); color: #fb923c; border: 1px solid rgba(251,146,60,0.28); }
+
+    .card-desc { color: var(--muted); font-size: 0.91rem; margin-bottom: 14px; line-height: 1.65; }
+    .card-impact {
+      background: rgba(34,197,94,0.06); border-left: 3px solid var(--g);
+      border-radius: 0 8px 8px 0; padding: 10px 14px; margin-bottom: 14px;
+      font-size: 0.85rem; color: var(--text); line-height: 1.6;
+    }
+    .card-impact strong { color: var(--g); }
+    .card-meta {
+      display: flex; flex-wrap: wrap; gap: 10px 22px;
+      padding-top: 14px; border-top: 1px solid var(--border);
+    }
+    .meta-item { font-size: 0.76rem; color: var(--muted); display: inline-flex; align-items: center; gap: 5px; }
+    .meta-item strong { color: var(--text-bold); font-weight: 600; }
+    .meta-item .pill {
+      background: var(--card2); border: 1px solid var(--border-soft);
+      padding: 2px 8px; border-radius: 999px; font-size: 0.7rem;
+      color: var(--muted); font-weight: 500;
+    }
+    .meta-item .pill.green { color: var(--g); border-color: rgba(34,197,94,0.25); background: rgba(34,197,94,0.06); }
+
+    /* ────────────────────── N8N ──────────────────────────── */
+    .n8n-intro { color: var(--muted); font-size: 0.92rem; margin-bottom: 28px; line-height: 1.65; max-width: 720px; }
+    .n8n-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 14px; }
+    .n8n-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 20px;
+      transition: border-color var(--dur), transform 0.2s;
+    }
+    .n8n-card:hover { border-color: rgba(34,197,94,0.4); transform: translateY(-2px); }
+    .n8n-icon {
+      width: 32px; height: 32px; background: rgba(34,197,94,0.1);
+      border-radius: var(--rsm); display: flex; align-items: center;
+      justify-content: center; font-size: 0.95rem; color: var(--g);
+      margin-bottom: 12px;
+    }
+    .n8n-title { font-family: var(--display); font-size: 0.92rem; font-weight: 700; color: var(--text-bold); margin-bottom: 8px; line-height: 1.35; }
+    .n8n-desc  { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+    .n8n-area  { font-size: 0.7rem; color: var(--g); margin-top: 12px; font-weight: 600; letter-spacing: 0.04em; }
+
+    /* ─────────────────────── STACK ────────────────────────── */
+    .stack-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .stack-col {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 22px;
+    }
+    .stack-col-title {
+      font-family: var(--display); font-size: 0.72rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--g); font-weight: 700; margin-bottom: 16px;
+    }
+    .stack-col.violet .stack-col-title { color: var(--v); }
+    .stack-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip {
+      background: var(--card2); border: 1px solid var(--border-soft);
+      color: var(--text); border-radius: 6px; font-size: 0.76rem;
+      font-weight: 500; padding: 4px 10px;
+      transition: border-color var(--dur), color var(--dur);
+    }
+    .chip:hover { border-color: var(--g); color: var(--g); }
+    .stack-col.violet .chip:hover { border-color: var(--v); color: var(--v); }
+
+    /* ────────────────────────── CTA ───────────────────────── */
+    .cta-wrap { max-width: var(--max); margin: 0 auto; padding: 0 28px 80px; }
+    .cta-box {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--rlg); padding: 56px 40px; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-box::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 80% at 50% 0%, rgba(34,197,94,0.07) 0%, transparent 70%),
+                  radial-gradient(ellipse 50% 60% at 80% 100%, rgba(167,139,250,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-tag {
+      display: inline-flex; gap: 6px; align-items: center;
+      background: rgba(34,197,94,0.08); color: var(--g);
+      border: 1px solid rgba(34,197,94,0.2); border-radius: 999px;
+      font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+      font-weight: 700; padding: 5px 14px; margin-bottom: 18px;
+    }
+    .cta-box h2 { font-family: var(--display); font-size: 1.75rem; font-weight: 700; letter-spacing: -0.025em; margin-bottom: 14px; }
+    .cta-box h2 span {
+      background: linear-gradient(135deg, var(--g) 0%, var(--v) 100%);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .cta-box p { color: var(--muted); font-size: 0.98rem; max-width: 500px; margin: 0 auto 32px; line-height: 1.65; }
+    .cta-links { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+
+    /* ────────────────────── FOOTER ────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border); padding: 36px 28px;
+      text-align: center; color: var(--muted); font-size: 0.83rem;
+    }
+    footer .full-name { font-family: var(--display); color: var(--text-bold); font-weight: 600; }
+    footer a { color: var(--g); }
+    .sep { opacity: 0.35; margin: 0 8px; }
+
+    /* ───────────────────── BACK TO TOP ────────────────────── */
+    #backTop {
+      position: fixed; bottom: 28px; right: 28px; z-index: 99;
+      background: var(--g); color: #0a0f1e;
+      border: none; border-radius: 10px; width: 42px; height: 42px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; font-weight: 700; cursor: pointer;
+      box-shadow: 0 6px 22px rgba(34,197,94,0.4);
+      opacity: 0; transform: translateY(12px);
+      transition: opacity 0.3s, transform 0.3s, background var(--dur);
+    }
+    #backTop.visible { opacity: 1; transform: none; }
+    #backTop:hover { background: var(--g2); }
+
+    /* ───────────────────── RESPONSIVE ─────────────────────── */
+    @media (max-width: 820px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+      .hero-content { order: 2; }
+      .hero-photo { order: 1; width: 150px; height: 150px; margin: 0 0 4px; }
+      .hero-photo::before { inset: -16px; filter: blur(20px); }
+    }
+    @media (max-width: 920px) {
+      .pillars { grid-template-columns: 1fr; }
+      .cockpit-grid { grid-template-columns: repeat(2, 1fr); }
+      .lead-grid { grid-template-columns: 1fr; }
+      .stack-grid { grid-template-columns: repeat(2, 1fr); }
+      .timeline { grid-template-columns: 1fr; gap: 28px; padding: 18px 0 0; }
+      .timeline::before { display: none; }
+      .tl-dot { margin-top: 0; }
+      .tl-step { padding: 0; text-align: left; padding-left: 22px; border-left: 2px solid var(--border); }
+      .tl-step .tl-dot { position: absolute; left: -10px; top: 0; margin: 0; }
+    }
+    @media (max-width: 640px) {
+      nav { padding: 0 18px; }
+      .nav-link { display: none; }
+      .hero { padding: 72px 18px 40px; }
+      .hero h1 { font-size: 2.1rem; }
+      .cockpit, .section, .cta-wrap { padding-left: 18px; padding-right: 18px; }
+      .cockpit-grid { grid-template-columns: 1fr; }
+      .stack-grid { grid-template-columns: 1fr; }
+      .card-top { flex-direction: column; }
+      .cat-desc { display: none; }
+      .cta-box { padding: 38px 22px; }
+      .cta-box h2 { font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── SCROLL PROGRESS BAR ── -->
+<div id="scrollProgress"></div>
+
+<!-- ─── SIDEBAR (vertical · navegação por seção) ─── -->
+<aside id="sidebar" aria-label="Navegação por seção">
+  <a class="sidebar-link" href="#snapshot">Snapshot</a>
+  <a class="sidebar-link" href="#trajetoria">Trajetória</a>
+  <a class="sidebar-link" href="#lideranca">Liderança</a>
+  <a class="sidebar-link" href="#projetos">Produtos</a>
+  <a class="sidebar-link" href="#automacoes">Automações</a>
+  <a class="sidebar-link" href="#stack">Stack</a>
+</aside>
+
+<div class="main-wrap">
+
+<!-- ─────────────────────── NAV ─────────────────────────── -->
+<nav>
+  <div class="nav-logo">Radamés <span>Medeiros</span></div>
+  <div class="nav-right">
+    <a class="nav-link" href="#snapshot">Snapshot</a>
+    <a class="nav-link" href="#trajetoria">Trajetória</a>
+    <a class="nav-link" href="#lideranca">Liderança</a>
+    <a class="nav-link" href="#projetos">Produtos</a>
+    <a class="nav-link" href="#automacoes">Automações</a>
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" aria-label="Alternar tema claro e escuro" title="Alternar tema">
+      <svg class="theme-icon theme-sun"  viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="4"/>
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+      </svg>
+      <svg class="theme-icon theme-moon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </button>
+    <a class="btn" href="https://www.linkedin.com/in/radames-medeiros" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+</nav>
+
+<!-- ─────────────────────── HERO ────────────────────────── -->
+<section class="hero reveal">
+  <div class="hero-grid">
+    <div class="hero-content">
+      <div class="tag"><span class="tag-dot"></span>Líder de Tecnologia · Personal Global</div>
+      <h1><span class="name-first">Radamés</span><span class="name-last">Medeiros</span></h1>
+      <p class="hero-sub">
+        Lidero a área de Tecnologia da Personal Global, conduzindo produtos digitais
+        <strong>da concepção à produção</strong>. PhD em Ciências (UNIFESP), <strong>9 anos</strong>
+        como professor universitário e, hoje, à frente de uma equipe Tech direta com
+        stakeholders cross-funcionais em CS, Marketing, Comercial, Financeiro,
+        Eventos e Pessoas.
+      </p>
+      <div class="hero-links">
+        <a class="btn btn-primary" href="#projetos">Ver Produtos</a>
+        <a class="btn" href="#lideranca">Como Lidero</a>
+        <a class="btn" href="https://www.linkedin.com/in/radames-medeiros" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/radamesDS" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <div class="hero-photo-frame">
+        <img src="https://res.cloudinary.com/dhare2tvd/image/upload/v1777606434/1768939928476_oadib9.jpg" alt="Radamés Medeiros — Líder de Tecnologia" loading="eager" decoding="async" />
+      </div>
+    </div>
+  </div>
+
+  <div class="pillars">
+    <a class="pillar" href="#lideranca">
+      <span class="pillar-num">01 / Liderança</span>
+      <span class="pillar-name">Squad &amp; Operação</span>
+      <span class="pillar-desc">7 colaboradores diretos · ritos de squad · governança técnica</span>
+    </a>
+    <a class="pillar" href="#projetos">
+      <span class="pillar-num">02 / Produto &amp; IA</span>
+      <span class="pillar-name">End-to-End</span>
+      <span class="pillar-desc">Concepção · backlog · engenharia · infra · deploy · validação</span>
+    </a>
+    <a class="pillar" href="#snapshot">
+      <span class="pillar-num">03 / Análise</span>
+      <span class="pillar-name">Decisão por Dados</span>
+      <span class="pillar-desc">PhD em Ciências · pensamento analítico · resultado mensurável</span>
+    </a>
+  </div>
+</section>
+
+<!-- ────────────────── SNAPSHOT EXECUTIVO ─────────────────── -->
+<section class="cockpit reveal" id="snapshot">
+  <div class="sec-head">
+    <span class="sec-num">01 / SNAPSHOT</span>
+    <h2 class="sec-title">Cockpit Executivo</h2>
+    <span class="sec-line"></span>
+  </div>
+  <div class="cockpit-grid">
+
+    <div class="kpi">
+      <div class="kpi-head">
+        <div class="kpi-icon">◆</div>
+        <svg class="kpi-spark" viewBox="0 0 60 22" preserveAspectRatio="none">
+          <polyline points="0,18 10,16 20,16 30,15 40,15 50,15 60,15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="60" cy="15" r="2.2" fill="currentColor"/>
+        </svg>
+      </div>
+      <div class="kpi-num"><span data-target="7">0</span></div>
+      <div class="kpi-label">Squad Tech direto</div>
+      <div class="kpi-context">3 desenvolvedores · 2 automação · 2 suporte</div>
+    </div>
+
+    <div class="kpi">
+      <div class="kpi-head">
+        <div class="kpi-icon">⌥</div>
+        <svg class="kpi-spark" viewBox="0 0 60 22" preserveAspectRatio="none">
+          <polyline points="0,20 10,17 20,15 30,13 40,10 50,7 60,4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="60" cy="4" r="2.2" fill="currentColor"/>
+        </svg>
+      </div>
+      <div class="kpi-num"><span data-target="36">0</span><small>+</small></div>
+      <div class="kpi-label">Repositórios sob gestão</div>
+      <div class="kpi-context">global-educacao-tech + iniciativas próprias</div>
+    </div>
+
+    <div class="kpi violet">
+      <div class="kpi-head">
+        <div class="kpi-icon">▲</div>
+        <svg class="kpi-spark" viewBox="0 0 60 22" preserveAspectRatio="none">
+          <polyline points="0,18 10,15 20,12 30,10 40,7 50,5 60,3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="60" cy="3" r="2.2" fill="currentColor"/>
+        </svg>
+      </div>
+      <div class="kpi-num"><span data-target="9">0</span></div>
+      <div class="kpi-label">Anos como professor universitário</div>
+      <div class="kpi-context">PhD em Ciências (UNIFESP)</div>
+    </div>
+
+    <div class="kpi">
+      <div class="kpi-head">
+        <div class="kpi-icon">⚡</div>
+        <svg class="kpi-spark" viewBox="0 0 60 22" preserveAspectRatio="none">
+          <polyline points="0,19 10,17 20,14 30,12 40,9 50,6 60,4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="60" cy="4" r="2.2" fill="currentColor"/>
+        </svg>
+      </div>
+      <div class="kpi-num"><span data-target="60">0</span><small>+</small></div>
+      <div class="kpi-label">Workflows n8n em produção</div>
+      <div class="kpi-context">2 instâncias auto-hospedadas · 7 domínios</div>
+    </div>
+
+    <div class="kpi violet">
+      <div class="kpi-head">
+        <div class="kpi-icon">⊕</div>
+        <svg class="kpi-spark" viewBox="0 0 60 22" preserveAspectRatio="none">
+          <polyline points="0,16 10,16 20,14 30,14 40,12 50,12 60,10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="60" cy="10" r="2.2" fill="currentColor"/>
+        </svg>
+      </div>
+      <div class="kpi-num"><span data-target="6">0</span></div>
+      <div class="kpi-label">Áreas cross-funcionais atendidas</div>
+      <div class="kpi-context">CS · Marketing · Comercial · Financeiro · Eventos · Pessoas</div>
+    </div>
+
+    <div class="kpi">
+      <div class="kpi-head">
+        <div class="kpi-icon">◎</div>
+        <svg class="kpi-spark" viewBox="0 0 60 22" preserveAspectRatio="none">
+          <polyline points="0,12 10,12 20,12 30,12 40,12 50,12 60,12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 3"/>
+          <circle cx="60" cy="12" r="2.2" fill="currentColor"/>
+        </svg>
+      </div>
+      <div class="kpi-num">End-to-End</div>
+      <div class="kpi-label">Ciclo de produto</div>
+      <div class="kpi-context">Concepção · Backlog · Dev · Infra · Deploy · Validação</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─────────────────────── TRAJETÓRIA ────────────────────── -->
+<section class="section reveal" id="trajetoria">
+  <div class="sec-head sec-head--alt">
+    <span class="sec-num">02 / TRAJETÓRIA</span>
+    <h2 class="sec-title">Da pesquisa científica à liderança técnica</h2>
+    <span class="sec-line"></span>
+  </div>
+  <div class="timeline">
+    <div class="tl-step violet">
+      <div class="tl-dot"></div>
+      <div class="tl-phase">Formação Científica</div>
+      <div class="tl-title">PhD em Ciências</div>
+      <div class="tl-meta">UNIFESP — Universidade Federal de São Paulo. Base de pesquisa, método científico e pensamento analítico aplicado a decisão.</div>
+    </div>
+    <div class="tl-step">
+      <div class="tl-dot"></div>
+      <div class="tl-phase">Formação Docente</div>
+      <div class="tl-title">Professor Universitário · 9 anos</div>
+      <div class="tl-meta">Quase uma década formando profissionais. Consolidação de habilidades de comunicação, didática e desenvolvimento de pessoas.</div>
+    </div>
+    <div class="tl-step current">
+      <div class="tl-dot"></div>
+      <div class="tl-phase">Atual · Tech Lead</div>
+      <div class="tl-title">Líder de Tecnologia · Personal Global</div>
+      <div class="tl-meta">Conduzo squad Tech direto e a operação de produto digital da empresa. Da concepção à produção, com IA aplicada e automação como vetores estratégicos.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────── LIDERANÇA ─────────────────────── -->
+<section class="section reveal" id="lideranca">
+  <div class="sec-head">
+    <span class="sec-num">03 / LIDERANÇA</span>
+    <h2 class="sec-title">Como conduzo a operação Tech</h2>
+    <span class="sec-line"></span>
+  </div>
+  <div class="lead-grid">
+
+    <div class="lead-card">
+      <div class="lead-icon">⌬</div>
+      <h3 class="lead-title">Composição</h3>
+      <div class="lead-list">
+        <div class="lead-item"><span><strong>3 desenvolvedores</strong> — backend &amp; frontend</span></div>
+        <div class="lead-item"><span><strong>2 gestores de automação</strong> — workflows n8n e integrações</span></div>
+        <div class="lead-item"><span><strong>2 suportes em tecnologia</strong> — operação e atendimento interno</span></div>
+        <div class="lead-item"><span>Interface contínua com <strong>6 áreas</strong> internas e stakeholders externos em projetos cross-funcionais</span></div>
+      </div>
+    </div>
+
+    <div class="lead-card violet">
+      <div class="lead-icon">⟢</div>
+      <h3 class="lead-title">Processo</h3>
+      <div class="lead-list">
+        <div class="lead-item"><span><strong>Sprints quinzenais</strong> com backlog versionado em ClickUp</span></div>
+        <div class="lead-item"><span><strong>Daily Global Tech</strong> e weekly cross-funcional</span></div>
+        <div class="lead-item"><span><strong>Code review obrigatório</strong> e gate de qualidade antes de release</span></div>
+        <div class="lead-item"><span><strong>OKRs trimestrais</strong> alinhados às áreas de negócio</span></div>
+        <div class="lead-item"><span><strong>RBAC por perfil</strong>, auditoria e governança técnica documentada</span></div>
+      </div>
+    </div>
+
+    <div class="lead-card">
+      <div class="lead-icon">⊞</div>
+      <h3 class="lead-title">Escopo · End-to-End</h3>
+      <div class="lead-list">
+        <div class="lead-item"><span><strong>Concepção &amp; Produto</strong> — descoberta, ideação e roadmap</span></div>
+        <div class="lead-item"><span><strong>Backlog &amp; Gestão</strong> — priorização, métricas e entrega</span></div>
+        <div class="lead-item"><span><strong>Engenharia</strong> — arquitetura e código direto em projetos prioritários</span></div>
+        <div class="lead-item"><span><strong>Infraestrutura</strong> — VPS, Docker, CI/CD, monitoramento</span></div>
+        <div class="lead-item"><span><strong>Deploy &amp; Validação</strong> — Vercel, transição com stakeholder, produção</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─────────────────────── PRODUTOS ──────────────────────── -->
+<section class="section reveal" id="projetos">
+  <div class="sec-head sec-head--alt">
+    <span class="sec-num">04 / PRODUTOS</span>
+    <h2 class="sec-title">Produtos sob direção</h2>
+    <span class="sec-line"></span>
+  </div>
+
+  <!-- Direção de Produto -->
+  <div class="product-cat dir">
+    <div class="cat-head">
+      <div class="cat-icon">◐</div>
+      <h3 class="cat-title">Direção de Produto</h3>
+      <span class="cat-desc">Concepção, arquitetura e direção · execução pelo squad</span>
+    </div>
+    <div class="products-grid">
+
+      <div class="card">
+        <div class="card-top">
+          <h3>SGT — Sistema Global Tech (HUB de Sistemas)</h3>
+          <div class="badges">
+            <span class="badge b-dir">Direção</span>
+            <span class="badge b-ai">IA Aplicada</span>
+          </div>
+        </div>
+        <p class="card-desc">Sistema central da Personal Global: hub que unifica gestão educacional, comercial, financeira e operacional em uma única plataforma web. Construído em Next.js 15, TypeScript e Supabase, com 17 sub-módulos em produção — incluindo check-in via QR Code, copiloto de IA para WhatsApp, analytics, dashboard financeiro, gestão de eventos e módulo educacional. Sob minha direção arquitetural, com squad executando sob backlog quinzenal.</p>
+        <div class="card-impact"><strong>Impacto:</strong> Centralizou em uma interface o que antes vivia em planilhas e sistemas isolados, eliminando retrabalho e estabelecendo fonte única da verdade entre as áreas.</div>
+        <div class="card-meta">
+          <span class="meta-item"><strong>Stack:</strong> Next.js 15 · TypeScript · Supabase · Tailwind · Vercel</span>
+          <span class="meta-item"><strong>Papel:</strong> Direção técnica + arquitetura</span>
+          <span class="meta-item"><a href="https://sgt-ruby.vercel.app" target="_blank" rel="noopener">Ver deploy →</a></span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <h3>Atendimento Inteligente via WhatsApp (UZApi)</h3>
+          <div class="badges">
+            <span class="badge b-dir">Direção</span>
+            <span class="badge b-ai">IA Aplicada</span>
+          </div>
+        </div>
+        <p class="card-desc">Plataforma de atendimento construída em React, TypeScript e Supabase que integra um agente de IA para triagem, classificação e resposta automatizada de mensagens via WhatsApp. Arquitetura event-driven com webhooks. Concebido por mim para escalar atendimento sem sacrificar a qualidade humana das interações que de fato exigem julgamento.</p>
+        <div class="card-impact"><strong>Impacto:</strong> Automação da triagem inicial libera o time humano para casos que realmente exigem empatia ou decisão complexa.</div>
+        <div class="card-meta">
+          <span class="meta-item"><strong>Stack:</strong> React · TypeScript · Supabase · UZApi · OpenAI</span>
+          <span class="meta-item"><strong>Padrão:</strong> Event-driven · webhooks · escalonamento inteligente</span>
+          <span class="meta-item"><a href="https://github.com/radamesDS/atendimento-uazapi" target="_blank" rel="noopener">GitHub →</a></span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <h3>Plataformas Educacionais (Portal Aluno · Portal Uploaders · Educacional)</h3>
+          <div class="badges">
+            <span class="badge b-dir">Direção</span>
+            <span class="badge b-role">EdTech</span>
+          </div>
+        </div>
+        <p class="card-desc">Conjunto de produtos digitais para o ecossistema educacional da Personal Global: Portal do Aluno, Portal de Uploaders (gerenciamento de matrículas, gravações e métricas) e plataforma Educacional. Direção de produto, definição de roadmap e governança técnica sob minha responsabilidade — execução conduzida pelo squad.</p>
+        <div class="card-impact"><strong>Impacto:</strong> Verticais educacionais ganharam plataforma própria, com métricas de educacional, ROAS e fila de produção visíveis em tempo real.</div>
+        <div class="card-meta">
+          <span class="meta-item"><strong>Stack:</strong> Next.js · TypeScript · Supabase · Vercel</span>
+          <span class="meta-item"><strong>Papel:</strong> Direção + governança técnica</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Construção Primária -->
+  <div class="product-cat">
+    <div class="cat-head">
+      <div class="cat-icon">◉</div>
+      <h3 class="cat-title">Construção Primária</h3>
+      <span class="cat-desc">Código direto · decisão técnica · entrega em produção</span>
+    </div>
+    <div class="products-grid">
+
+      <div class="card">
+        <div class="card-top">
+          <h3>Plataforma Interna Global</h3>
+          <div class="badges">
+            <span class="badge b-role">Construção</span>
+            <span class="badge b-role">Produção</span>
+          </div>
+        </div>
+        <p class="card-desc">Plataforma interna que organiza os processos entre comercial, guia do aluno e financeiro. Construída do zero, com backend em JavaScript/Node.js, gestão de fluxos cross-funcional e auditoria de acessos. Principal frente de construção pessoal — código próprio em todas as camadas.</p>
+        <div class="card-impact"><strong>Impacto:</strong> Tornou auditável e cross-funcional um processo que antes dependia de mensagens dispersas e planilhas paralelas. Pipeline visual e histórico por aluno.</div>
+        <div class="card-meta">
+          <span class="meta-item"><strong>Stack:</strong> JavaScript · Node.js · Express · Supabase · Service Accounts</span>
+          <span class="meta-item"><strong>Contribuição:</strong> <span class="pill green">100 commits diretos</span></span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <h3>Meeting Mastermind — Plataforma de Agentes de IA</h3>
+          <div class="badges">
+            <span class="badge b-role">Construção</span>
+            <span class="badge b-ai">IA Aplicada</span>
+          </div>
+        </div>
+        <p class="card-desc">Plataforma flexível para criação e orquestração de <strong style="color:var(--text-bold)">agentes de IA</strong> voltados à <strong style="color:var(--text-bold)">gestão de equipes</strong> e à <strong style="color:var(--text-bold)">otimização de projetos e processos</strong>. Cada agente é configurado para um ritual ou frente específica — desde captura e estruturação de reuniões até follow-up automatizado de compromissos — com integrações nativas a ClickUp, Google Drive, Google Calendar, WhatsApp e transcrição de gravações. Concepção e execução próprias, do desenho do produto à entrega em produção.</p>
+        <div class="card-impact"><strong>Impacto:</strong> Transforma reuniões e interações dispersas em ações estruturadas, atribuídas e rastreáveis dentro do ClickUp — fechando o loop entre decisão e execução, e devolvendo tempo de gestão à liderança.</div>
+        <div class="card-meta">
+          <span class="meta-item"><strong>Stack:</strong> React · TypeScript · OpenAI · ClickUp API · Google APIs · WhatsApp API · transcrição</span>
+          <span class="meta-item"><strong>Diferencial:</strong> Agentes configuráveis · multi-integração · multi-canal</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <h3>Sistema de Renovação UPL Pro (pos08-rocket)</h3>
+          <div class="badges">
+            <span class="badge b-role">Construção</span>
+            <span class="badge b-fin">Financeiro</span>
+          </div>
+        </div>
+        <p class="card-desc">Plataforma interna com painel de CS (tabela de alunos, filtros avançados, ações rápidas) e Kanban visual de 6 colunas com drag-and-drop, timer de urgência por cor e rastreamento automático de etapas. Backend Node.js/Express, Google Sheets como banco via Service Account, auditoria completa de cada ação registrada na planilha.</p>
+        <div class="card-impact"><strong>Impacto:</strong> Substituiu o processo manual de renovação por pipeline visual com visibilidade total e histórico auditável de cada interação.</div>
+        <div class="card-meta">
+          <span class="meta-item"><strong>Stack:</strong> React · TypeScript · Node.js/Express · Google Sheets API · dotenv-vault</span>
+          <span class="meta-item"><strong>Contribuição:</strong> <span class="pill green">53 commits diretos</span></span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <h3>Dashboards Estratégicos (Lançamento + Financeiro)</h3>
+          <div class="badges">
+            <span class="badge b-role">Construção</span>
+            <span class="badge b-fin">Analytics</span>
+          </div>
+        </div>
+        <p class="card-desc">Dois painéis analíticos construídos para diferentes frentes: dashboard de lançamento (acompanhamento de métricas comerciais durante a janela de captação) e dashboard financeiro (MRR, indicadores e visualização de receita). Fontes integradas via Google Sheets, Conta Azul e ASAAS, com decisões executivas baseadas nos dados expostos.</p>
+        <div class="card-impact"><strong>Impacto:</strong> Tomada de decisão durante lançamentos e fechamento financeiro deixou de depender de relatórios estáticos e ganhou visualização em tempo real.</div>
+        <div class="card-meta">
+          <span class="meta-item"><strong>Stack:</strong> TypeScript · Next.js · Google Sheets · Conta Azul · ASAAS</span>
+          <span class="meta-item"><strong>Contribuição:</strong> <span class="pill green">65 commits diretos</span></span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <h3>Check-in Revolution Event</h3>
+          <div class="badges">
+            <span class="badge b-role">Construção</span>
+            <span class="badge b-role">Eventos</span>
+          </div>
+        </div>
+        <p class="card-desc">Sistema de controle de entrada para evento presencial de grande porte com leitura de QR Code, validação em tempo real contra base de inscritos e relatórios de fluxo. Construído em HTML/JavaScript com integração direta ao backend de eventos.</p>
+        <div class="card-impact"><strong>Impacto:</strong> Substituiu o processo manual de credenciamento por leitor QR funcional, cortando filas e reduzindo erros de identificação.</div>
+        <div class="card-meta">
+          <span class="meta-item"><strong>Stack:</strong> HTML · JavaScript · QR Code · Google Sheets API</span>
+          <span class="meta-item"><strong>Contribuição:</strong> <span class="pill green">23 commits diretos</span></span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <h3>Formulário de Contratos (Personal Global)</h3>
+          <div class="badges">
+            <span class="badge b-role">Construção</span>
+            <span class="badge b-fin">Contratos</span>
+          </div>
+        </div>
+        <p class="card-desc">Interface web para preenchimento estruturado de dados destinados à geração automatizada de contratos digitais. Validação no formulário antes de qualquer geração; integrado ao pipeline n8n que cria, envia e monitora contratos via Autentique.</p>
+        <div class="card-impact"><strong>Impacto:</strong> Eliminou o retrabalho de cancelamento e reenvio de contratos com dados incorretos, recuperando aproximadamente 2 a 3 horas semanais do time de contratos.</div>
+        <div class="card-meta">
+          <span class="meta-item"><strong>Stack:</strong> HTML · JavaScript · integração Autentique + n8n</span>
+          <span class="meta-item"><strong>Contribuição:</strong> <span class="pill green">15 commits diretos</span></span>
+          <span class="meta-item"><a href="https://github.com/radamesDS/formulario-contratos-PG" target="_blank" rel="noopener">GitHub →</a></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MVPs Táticos -->
+  <div class="product-cat mvp">
+    <div class="cat-head">
+      <div class="cat-icon">⚡</div>
+      <h3 class="cat-title">MVPs &amp; Ferramentas Táticas</h3>
+      <span class="cat-desc">Do zero ao deploy · solo · resposta rápida a demandas</span>
+    </div>
+    <div class="products-grid">
+
+      <div class="card">
+        <div class="card-top">
+          <h3>Planilha de Gestão de Alunos (Interativa &amp; Simplificada)</h3>
+          <div class="badges">
+            <span class="badge b-mvp">MVP</span>
+            <span class="badge b-role">EdTech</span>
+          </div>
+        </div>
+        <p class="card-desc">Dois projetos complementares: versão interativa com interface web rica para gestão de carteira (régua de relacionamento, histórico de contatos, alertas de vencimento) e versão simplificada para personal trainers iniciantes. Ambas integradas a automações n8n para disparos de mensagens em datas estratégicas.</p>
+        <div class="card-impact"><strong>Impacto:</strong> Viabilizou acompanhamento proativo de alunos por personal trainers e professores sem necessidade de CRM pago, reduzindo churn e aumentando renovações.</div>
+        <div class="card-meta">
+          <span class="meta-item"><strong>Stack:</strong> HTML · JavaScript · CSS · n8n</span>
+          <span class="meta-item"><strong>Público:</strong> Personal trainers · professores · coaches</span>
+          <span class="meta-item"><a href="https://github.com/radamesDS/planilha-gestao-alunos-simples" target="_blank" rel="noopener">GitHub →</a></span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <h3>Formulários Estratégicos · Revolution &amp; UPL</h3>
+          <div class="badges">
+            <span class="badge b-mvp">MVP</span>
+            <span class="badge b-role">Marketing</span>
+          </div>
+        </div>
+        <p class="card-desc">Conjunto de formulários web com integração direta a planilhas e workflows n8n: gamificação de indicação Revolution 2025, indicação de salva-vidas, formulário de tamanho de casaco, indicação UPL VSL e formulário PPL 2026. Cada um construído sob demanda com prazo curto e entrega direta para a frente que solicitou.</p>
+        <div class="card-impact"><strong>Impacto:</strong> Resposta rápida (dias, não semanas) a demandas táticas das áreas de marketing, comercial e eventos sem onerar o backlog estratégico do squad.</div>
+        <div class="card-meta">
+          <span class="meta-item"><strong>Stack:</strong> HTML · JavaScript · Google Sheets · n8n</span>
+          <span class="meta-item"><strong>Áreas atendidas:</strong> Marketing · Comercial · Eventos</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <p style="font-size:0.82rem;color:var(--muted);margin-top:8px;line-height:1.6;border-top:1px dashed var(--border);padding-top:18px">
+    <strong style="color:var(--text-bold)">Também sob gestão técnica:</strong>
+    Organização 10x e demais iniciativas em frentes paralelas — projetos da empresa em que conduzo a gestão de desenvolvimento, governança e infra, em parceria com responsáveis diretos de cada produto.
+  </p>
+</section>
+
+<!-- ──────────────────── AUTOMAÇÕES n8n ───────────────────── -->
+<section class="section reveal" id="automacoes">
+  <div class="sec-head">
+    <span class="sec-num">05 / AUTOMAÇÃO</span>
+    <h2 class="sec-title">Plataforma de Automações n8n</h2>
+    <span class="sec-line"></span>
+  </div>
+  <p class="n8n-intro">
+    <strong style="color:var(--text-bold)">60+ workflows</strong> distribuídos em duas instâncias n8n auto-hospedadas,
+    organizados por domínio de negócio. Tratada como produto interno com versionamento, observabilidade e governança.
+    Abaixo as principais frentes em produção.
+  </p>
+  <div class="n8n-grid">
+
+    <div class="n8n-card">
+      <div class="n8n-icon">⚡</div>
+      <div class="n8n-title">Sistema Revolution 2025 (13+ workflows)</div>
+      <div class="n8n-desc">Pipeline completo para evento presencial: venda via Guru/Eduzz, geração de e-tickets personalizados, controle de entrada via QR Code, gamificação com indicações, premiação automatizada e comunicação em massa via WhatsApp. Cada etapa é um workflow independente com tratamento de erros e logs.</div>
+      <div class="n8n-area">Marketing · CS · Operação de Eventos</div>
+    </div>
+
+    <div class="n8n-card">
+      <div class="n8n-icon">📄</div>
+      <div class="n8n-title">Pipeline de Contratos com IA (Autentique)</div>
+      <div class="n8n-desc">Ciclo completo de contratos: formulário web → criação no Autentique → envio para assinatura → webhook de status → leitura do contrato assinado com IA para extração de dados estruturados → atualização automática no banco. Usado diariamente.</div>
+      <div class="n8n-area">Contratos · IA · Tecnologia &amp; Inovação</div>
+    </div>
+
+    <div class="n8n-card">
+      <div class="n8n-icon">💰</div>
+      <div class="n8n-title">Agente Financeiro IA + Conta Azul</div>
+      <div class="n8n-desc">Agente de IA conectado ao Conta Azul para coleta, migração e análise de dados financeiros. Cruza receitas por aluno, identifica inadimplências e alimenta dashboards no Google Sheets. CRON diário para atualização automática e sincronização com IUGU para débitos.</div>
+      <div class="n8n-area">Financeiro · IA · Integração ERP</div>
+    </div>
+
+    <div class="n8n-card">
+      <div class="n8n-icon">🚀</div>
+      <div class="n8n-title">Automação Comercial Espartano (UPL 2026)</div>
+      <div class="n8n-desc">Ciclo comercial de lançamento: captura de leads, qualificação, sequência de abordagem, criação automática de grupos WhatsApp com inclusão de mentores, foto e nome, migração e atualização de dados de renovação de turma.</div>
+      <div class="n8n-area">Marketing · Comercial · UPL 2026</div>
+    </div>
+
+    <div class="n8n-card">
+      <div class="n8n-icon">💬</div>
+      <div class="n8n-title">Central de Atendimento WhatsApp</div>
+      <div class="n8n-desc">Hub de atendimento via WhatsApp com roteamento inteligente, histórico de conversas, integração com API CAT para registro de atendimentos, busca de participantes em grupos e configuração automática de grupos por tipo de aluno ou turma.</div>
+      <div class="n8n-area">CS · Atendimento · Integração</div>
+    </div>
+
+    <div class="n8n-card">
+      <div class="n8n-icon">🎓</div>
+      <div class="n8n-title">Sistema CBHE 2025 (Congresso Acadêmico)</div>
+      <div class="n8n-desc">Automação para gestão de participantes de congresso acadêmico: controle de entrada nos grupos WhatsApp por inscrição confirmada, identificação de duplicatas do congresso anterior e reativação seletiva com confirmações personalizadas.</div>
+      <div class="n8n-area">Marketing · Eventos Acadêmicos</div>
+    </div>
+
+    <div class="n8n-card">
+      <div class="n8n-icon">📋</div>
+      <div class="n8n-title">Gestão de Turma — Personal Especialista</div>
+      <div class="n8n-desc">Workflows ativos para a turma Personal Especialista: criação e atualização de contratos Autentique, busca de participantes por grupo WhatsApp e sincronização de dados de matrícula com a plataforma interna. Executado em frequência diária.</div>
+      <div class="n8n-area">Personal Especialista · Contratos · CS</div>
+    </div>
+
+    <div class="n8n-card">
+      <div class="n8n-icon">🌐</div>
+      <div class="n8n-title">Landing Page Inteligente + Backend em Planilha</div>
+      <div class="n8n-desc">Integração entre landing page de captação e Google Sheets como backend. Novos leads disparam boas-vindas automáticas, inserção em grupos WhatsApp e notificação para o time comercial em tempo real.</div>
+      <div class="n8n-area">Tecnologia &amp; Inovação · Marketing</div>
+    </div>
+
+    <div class="n8n-card">
+      <div class="n8n-icon">💳</div>
+      <div class="n8n-title">ASAAS — Subconta &amp; Cobrança Automatizada</div>
+      <div class="n8n-desc">Criação de subcontas no ASAAS, geração de cobranças automáticas por aluno e sincronização com o sistema financeiro interno. Parte da estratégia de escalar cobranças sem intervenção manual.</div>
+      <div class="n8n-area">Financeiro · Tecnologia &amp; Inovação</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ──────────────────────── STACK ────────────────────────── -->
+<section class="section reveal" id="stack">
+  <div class="sec-head sec-head--alt">
+    <span class="sec-num">06 / STACK</span>
+    <h2 class="sec-title">Stack por eixo de atuação</h2>
+    <span class="sec-line"></span>
+  </div>
+  <div class="stack-grid">
+
+    <div class="stack-col">
+      <div class="stack-col-title">Liderança &amp; Processo</div>
+      <div class="stack-chips">
+        <span class="chip">Scrum</span><span class="chip">Kanban</span><span class="chip">ClickUp</span>
+        <span class="chip">OKRs</span><span class="chip">Code Review</span><span class="chip">RBAC</span>
+        <span class="chip">CI/CD</span><span class="chip">Sprints quinzenais</span>
+        <span class="chip">Daily Tech</span><span class="chip">Backlog</span>
+      </div>
+    </div>
+
+    <div class="stack-col">
+      <div class="stack-col-title">Engenharia</div>
+      <div class="stack-chips">
+        <span class="chip">TypeScript</span><span class="chip">Next.js 15</span><span class="chip">React</span>
+        <span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">Vite</span>
+        <span class="chip">shadcn/ui</span><span class="chip">Tailwind</span>
+        <span class="chip">PostgreSQL</span><span class="chip">Supabase</span>
+        <span class="chip">REST</span>
+      </div>
+    </div>
+
+    <div class="stack-col violet">
+      <div class="stack-col-title">IA &amp; Dados</div>
+      <div class="stack-chips">
+        <span class="chip">Agentes de IA</span><span class="chip">LLM / OpenAI</span>
+        <span class="chip">n8n</span><span class="chip">Análise de Dados</span>
+        <span class="chip">Google Sheets API</span><span class="chip">Scraping</span>
+        <span class="chip">Web Hooks</span><span class="chip">Conta Azul API</span>
+      </div>
+    </div>
+
+    <div class="stack-col">
+      <div class="stack-col-title">Infra &amp; Operação</div>
+      <div class="stack-chips">
+        <span class="chip">VPS</span><span class="chip">Docker</span>
+        <span class="chip">Vercel</span><span class="chip">GitHub Actions</span>
+        <span class="chip">WhatsApp API</span><span class="chip">Autentique</span>
+        <span class="chip">ASAAS</span><span class="chip">IUGU</span>
+        <span class="chip">Service Accounts</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ───────────────── CANAIS OFICIAIS ─────────────────────── -->
+<div class="cta-wrap reveal">
+  <div class="cta-box">
+    <div class="cta-tag">Canais oficiais</div>
+    <h2>Onde me <span>encontrar</span></h2>
+    <p>
+      Presença digital pública. Acompanhe o trabalho técnico e o histórico profissional
+      pelos canais abaixo.
+    </p>
+    <div class="cta-links">
+      <a class="btn btn-primary" href="https://www.linkedin.com/in/radames-medeiros" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/radamesDS" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</div>
+
+<!-- ────────────────────── FOOTER ─────────────────────────── -->
+<footer>
+  <span class="full-name">Radamés Maciel Vitor Medeiros</span>
+  <span class="sep">·</span>
+  <span>São Paulo, Brasil</span>
+  <span class="sep">·</span>
+  <span>Líder de Tecnologia · Personal Global</span>
+  <span class="sep">·</span>
+  <a href="https://www.linkedin.com/in/radames-medeiros" target="_blank" rel="noopener">LinkedIn</a>
+  <span class="sep">·</span>
+  <a href="https://github.com/radamesDS" target="_blank" rel="noopener">GitHub</a>
+  <span class="sep">·</span>
+  <span>PhD em Ciências (UNIFESP)</span>
+</footer>
+
+</div><!-- /.main-wrap -->
+
+<!-- ─────────────────────── BACK TO TOP ───────────────────── -->
+<button id="backTop" aria-label="Voltar ao topo" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  /* ── Theme persistence (icon swap is handled in CSS) ── */
+  (function () {
+    const saved = localStorage.getItem('pg-theme');
+    if (saved) document.documentElement.dataset.theme = saved;
+  })();
+  function toggleTheme() {
+    const html = document.documentElement;
+    const next = html.dataset.theme === 'dark' ? 'light' : 'dark';
+    html.dataset.theme = next;
+    localStorage.setItem('pg-theme', next);
+  }
+
+  /* ── Scroll reveal ── */
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.07 });
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+  /* ── Animated counters ── */
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.target, 10);
+    const dur    = 1300;
+    const start  = performance.now();
+    function tick(now) {
+      const t     = Math.min((now - start) / dur, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = Math.round(eased * target);
+      if (t < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  const counterObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('[data-target]').forEach(animateCounter);
+        counterObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.25 });
+  document.querySelectorAll('.cockpit').forEach(el => counterObs.observe(el));
+
+  /* ── Scroll progress + Back-to-top (one rAF-driven listener) ── */
+  const backTop  = document.getElementById('backTop');
+  const progress = document.getElementById('scrollProgress');
+  let scrollScheduled = false;
+  function onScroll() {
+    if (scrollScheduled) return;
+    scrollScheduled = true;
+    requestAnimationFrame(() => {
+      const y     = window.scrollY;
+      const max   = document.documentElement.scrollHeight - window.innerHeight;
+      const ratio = max > 0 ? Math.min(y / max, 1) : 0;
+      progress.style.transform = 'scaleX(' + ratio + ')';
+      backTop.classList.toggle('visible', y > 480);
+      scrollScheduled = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* ── Active section indicator (top nav + sidebar) ── */
+  const navLinks   = document.querySelectorAll('.nav-link, .sidebar-link');
+  const sectionIds = ['snapshot','trajetoria','lideranca','projetos','automacoes','stack'];
+  const sectionEls = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+  function setActive(id) {
+    navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+  }
+  const navObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); });
+  }, { rootMargin: '-35% 0px -55% 0px', threshold: 0 });
+  sectionEls.forEach(el => navObs.observe(el));
+</script>
+</body>
+</html>
